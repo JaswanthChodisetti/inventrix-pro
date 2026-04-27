@@ -247,7 +247,10 @@ export async function registerUser(
   password: string
 ): Promise<{ success: boolean; error?: string; user?: SessionUser }> {
   try {
+    console.log("[Auth] Starting registration for:", email)
+    console.log("[Auth] MONGODB_URI configured:", !!process.env.MONGODB_URI)
     const db = await getDatabase()
+    console.log("[Auth] Database connection successful")
 
     // Check if user already exists
     const existingUser = await db.collection(COLLECTIONS.USERS).findOne({ email: email.toLowerCase() })
@@ -301,7 +304,10 @@ export async function loginUser(
   password: string
 ): Promise<{ success: boolean; error?: string; user?: SessionUser; token?: string }> {
   try {
+    console.log("[Auth] Starting login for:", email)
+    console.log("[Auth] MONGODB_URI configured:", !!process.env.MONGODB_URI)
     const db = await getDatabase()
+    console.log("[Auth] Database connection successful")
 
     // Find user
     const user = await db.collection(COLLECTIONS.USERS).findOne({ email: email.toLowerCase() })

@@ -1,4 +1,4 @@
-import { MongoClient, Db, ServerApiVersion } from "mongodb"
+import { MongoClient, Db } from "mongodb"
 
 const uri = process.env.MONGODB_URI
 
@@ -7,14 +7,11 @@ if (!uri) {
 }
 
 const options = {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
   maxPoolSize: 10,
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
+  retryWrites: true,
+  retryReads: true,
 }
 
 let client: MongoClient | null = null
