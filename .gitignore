@@ -21,3 +21,6 @@ pnpm-debug.log*
 
 # Testing
 coverage/
+
+# MongoDB data
+data/db/
